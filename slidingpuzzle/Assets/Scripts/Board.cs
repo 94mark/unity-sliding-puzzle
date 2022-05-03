@@ -17,6 +17,9 @@ public class Board : MonoBehaviour
 
     public  Vector3 EmptyTilePosition { set; get; }
 
+    public int Playtime { private set; get; } = 0;
+    public int MoveCount { private set; get; } = 0;
+
     private IEnumerator Start()
     {
         tileList = new List<Tile>();
@@ -30,6 +33,7 @@ public class Board : MonoBehaviour
         tileList.ForEach(x => x.SetCorrectPosition());
 
         StartCoroutine("OnSuffle");
+        StartCoroutine("CalculatePlaytime");
     }
 
     private void SpawnTiles()
@@ -77,6 +81,32 @@ public class Board : MonoBehaviour
             EmptyTilePosition = tile.GetComponent<RectTransform>().localPosition;
 
             tile.OnMoveTo(goalPosition);
+
+            MoveCount++;
+        }
+    }
+
+    public void IsGameOver()
+    {
+        List<Tile> tiles = tileList.FindAll(x => x.IsCorrected == true);
+
+        Debug.Log("Correct Count : " + tiles.Count);
+        if(tiles.Count == puzzleSize.x * puzzleSize.y - 1)
+        {
+            Debug.Log("GameClear");
+
+            StopCoroutine("CalculatePlaytime");
+            GetComponent<UIController>().OnResultPanel();
+        }
+    }
+
+    private IEnumerator CalculatePlaytime()
+    {
+        while(true)
+        {
+            Playtime++;
+
+            yield return new WaitForSeconds(1);
         }
     }
 }
