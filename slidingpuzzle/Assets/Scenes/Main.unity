@@ -384,6 +384,7 @@ GameObject:
   - component: {fileID: 1426430525}
   - component: {fileID: 1426430524}
   - component: {fileID: 1426430523}
+  - component: {fileID: 1426430526}
   m_Layer: 5
   m_Name: Board
   m_TagString: Untagged
@@ -472,3 +473,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1426430521}
   m_CullTransparentMesh: 1
+--- !u!114 &1426430526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1426430521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a0a9ef9f35350442ae4068b8220791b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tilePrefab: {fileID: 4156626552774721727, guid: 20201f711ba93da46957ee7d58062f87, type: 3}
+  tilesParent: {fileID: 1426430522}
